@@ -15,5 +15,10 @@ export SLURM_CPU_BIND="cores"
 export OMP_NUM_THREADS=8
 export OMP_PROC_BIND=spread
 export OMP_PLACES=threads
+
 make exe
-srun --cpu-bind=cores perf record -o perf.data ./sph.x
+srun --cpu-bind=cores perf record -g -o perf.data ./sph.x
+
+PERF_REPORT="perf_report_${SLURM_JOB_ID}.txt"
+perf report --input=perf.data > $PERF_REPORT
+echo "Performance data saved to $PERF_REPORT"

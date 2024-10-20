@@ -14,6 +14,8 @@
 
 /* Define this to use the bucketing version of the code */
 #define USE_BUCKETING
+/* Define this to use the parallel version of the code */
+#define USE_PARALLEL
 
 /*@T
  * \subsection{Density computations}
@@ -36,7 +38,9 @@ void update_density(particle_t* pi, particle_t* pj, float h2, float C)
     float z  = h2-r2;
     if (z > 0) {
         float rho_ij = C*z*z*z;
+        #pragma omp atomic
         pi->rho += rho_ij;
+        #pragma omp atomic
         pj->rho += rho_ij;
     }
 }
@@ -54,21 +58,31 @@ void compute_density(sim_state_t* s, sim_param_t* params)
     float C  = ( 315.0/64.0/M_PI ) * s->mass / h9;
 
     // Clear densities
+    #ifdef USE_PARALLEL
+    #pragma omp parallel for
+    #endif
     for (int i = 0; i < n; ++i)
         p[i].rho = 0;
 
     // Accumulate density info
-#ifdef USE_BUCKETING
+    #ifdef USE_PARALLEL
+    #pragma omp parallel for
+    #endif
     /* BEGIN TASK */
     for (int i = 0; i < n; ++i) {
+        #ifdef USE_BUCKETING
         particle_t* pi = &p[i];
         unsigned buckets[MAX_NBR_BINS];
         unsigned nbuckets = particle_neighborhood(buckets, pi, h);
+        #else
+        particle_t* pi = s->part+i;
+        #endif
         
         // self contribution
         pi->rho += ( 315.0/64.0/M_PI ) * s->mass / h3;
         
         // neighbor contribution
+        #ifdef USE_BUCKETING
         for (unsigned b = 0; b < nbuckets; ++b) {
             particle_t* pj = hash[buckets[b]];
             while (pj) {
@@ -78,18 +92,14 @@ void compute_density(sim_state_t* s, sim_param_t* params)
                 pj = pj->next;
             }
         }
-    }
-    /* END TASK */
-#else
-    for (int i = 0; i < n; ++i) {
-        particle_t* pi = s->part+i;
-        pi->rho += ( 315.0/64.0/M_PI ) * s->mass / h3;
+        #else
         for (int j = i+1; j < n; ++j) {
             particle_t* pj = s->part+j;
             update_density(pi, pj, h2, C);
         }
+        #endif
     }
-#endif
+    /* END TASK */
 }
 
 
@@ -159,6 +169,9 @@ void compute_accel(sim_state_t* state, sim_param_t* params)
     compute_density(state, params);
 
     // Start with gravity and surface forces
+    #ifdef USE_PARALLEL
+    #pragma omp parallel for
+    #endif
     for (int i = 0; i < n; ++i)
         vec3_set(p[i].a,  0, -g, 0);
 
@@ -168,13 +181,16 @@ void compute_accel(sim_state_t* state, sim_param_t* params)
     float Cv = -mu;
 
     // Accumulate forces
-#ifdef USE_BUCKETING
+    #ifdef USE_PARALLEL
+    #pragma omp parallel for
+    #endif
     /* BEGIN TASK */
-    for (int i = 0; i < state->n; ++i) {
+    for (int i = 0; i < n; ++i) {
+        #ifdef USE_BUCKETING
         particle_t* pi = &p[i];
         unsigned buckets[MAX_NBR_BINS];
         unsigned nbuckets = particle_neighborhood(buckets, pi, h);
-        
+
         for (unsigned b = 0; b < nbuckets; ++b) {
             particle_t* pj = hash[buckets[b]];
             while (pj) {
@@ -184,16 +200,16 @@ void compute_accel(sim_state_t* state, sim_param_t* params)
                 pj = pj->next;
             }
         }
-    }
-    /* END TASK */
-#else
-    for (int i = 0; i < n; ++i) {
+
+        #else
         particle_t* pi = p+i;
         for (int j = i+1; j < n; ++j) {
             particle_t* pj = p+j;
             update_forces(pi, pj, h2, rho0, C0, Cp, Cv);
         }
+        #endif
+    
     }
-#endif
+    /* END TASK */
 }
 
