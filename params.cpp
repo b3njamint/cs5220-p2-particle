@@ -20,7 +20,7 @@ static void default_params(sim_param_t* params)
 {
     params->fname   = "run.out";
     params->nframes = 100; // TODO, dec from 400 to speed up testing
-    params->npframe = 20; // TODO, dec from 100 to speed up testing
+    params->npframe = 25; // TODO, dec from 100 to speed up testing
     params->dt      = 1e-4;
     params->h       = 5e-2;
     params->rho0    = 1000;

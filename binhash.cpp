@@ -52,7 +52,7 @@ unsigned particle_neighborhood(unsigned* buckets, particle_t* p, float h)
                 }
             }
         }
-    }
+    } 
 
     return count;
 
