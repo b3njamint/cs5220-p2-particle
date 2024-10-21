@@ -5,6 +5,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <omp.h>
+#include <vector>
 
 #include "vec3.hpp"
 #include "io.hpp"
@@ -31,6 +32,8 @@
  * of fluid in the corner of the domain and a spherical drop.
  *@c*/
 typedef int (*domain_fun_t)(float, float, float);
+
+std::vector<omp_lock_t> bin_locks;
 
 int box_indicator(float x, float y, float z)
 {
@@ -101,7 +104,7 @@ sim_state_t* place_particles(sim_param_t* param,
 void normalize_mass(sim_state_t* s, sim_param_t* param)
 {
     s->mass = 1;
-    hash_particles(s, param->h);
+    hash_particles(s, param->h, bin_locks);
     compute_density(s, param);
     float rho0 = param->rho0;
     float rho2s = 0;
@@ -117,7 +120,7 @@ sim_state_t* init_particles(sim_param_t* param)
 {
     sim_state_t* s = place_particles(param, box_indicator);
     normalize_mass(s, param);
-    return s;
+    return s; 
 }
 
 /*@T
@@ -154,16 +157,21 @@ int main(int argc, char** argv)
     float dt    = params.dt;
     int n       = state->n;
 
+    bin_locks = std::vector<omp_lock_t>(MAX_NBR_BINS);
+    for (int i = 0; i < MAX_NBR_BINS; i++) {
+        omp_init_lock(&bin_locks[i]);
+    }
+
     double t_start = omp_get_wtime();
     //write_header(fp, n);
     write_header(fp, n, nframes, params.h);
     write_frame_data(fp, n, state, NULL);
-    compute_accel(state, &params);
+    compute_accel(state, &params, bin_locks);
     leapfrog_start(state, dt);
     check_state(state);
     for (int frame = 1; frame < nframes; ++frame) {
         for (int i = 0; i < npframe; ++i) {
-            compute_accel(state, &params);
+            compute_accel(state, &params, bin_locks);
             leapfrog_step(state, dt);
             check_state(state);
         }

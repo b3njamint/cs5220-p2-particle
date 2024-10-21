@@ -1,4 +1,6 @@
 #include <string.h>
+#include <vector>
+#include <omp.h>
 
 #include "zmorton.hpp"
 #include "binhash.hpp"
@@ -59,20 +61,20 @@ unsigned particle_neighborhood(unsigned* buckets, particle_t* p, float h)
     /* END TASK */
 }
 
-void hash_particles(sim_state_t* s, float h)
+void hash_particles(sim_state_t* s, float h, std::vector<omp_lock_t>& bin_locks)
 {
     /* BEGIN TASK */
-
     // each bucket contains a linked list of particles
     memset(s->hash, 0, sizeof(particle_t*) * HASH_SIZE);
 
     // for each particle, calculate bucket and add to it
     for (int i = 0; i < s->n; i++) {
         unsigned bucket = particle_bucket(&s->part[i], h);
-        
+        omp_set_lock(&bin_locks[bucket]);
         s->part[i].next = s->hash[bucket];
         s->hash[bucket] = &s->part[i];
-    }
+        omp_set_lock(&bin_locks[bucket]);
+    } 
 
     /* END TASK */
 }

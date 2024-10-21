@@ -2,6 +2,8 @@
 #define BINHASH_H
 
 #include "state.hpp"
+#include <vector>
+#include <omp.h>
 
 /*@T
  * \section{Spatial hashing}
@@ -45,7 +47,7 @@
 
 unsigned particle_bucket(particle_t* p, float h);
 unsigned particle_neighborhood(unsigned* buckets, particle_t* p, float h);
-void hash_particles(sim_state_t* s, float h);
+void hash_particles(sim_state_t* s, float h, std::vector<omp_lock_t>& bin_locks);
 
 /*@q*/
 #endif /* BINHASH_H */

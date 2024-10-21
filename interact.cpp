@@ -146,7 +146,7 @@ void update_forces(particle_t* pi, particle_t* pj, float h2,
     }
 }
 
-void compute_accel(sim_state_t* state, sim_param_t* params)
+void compute_accel(sim_state_t* state, sim_param_t* params, std::vector<omp_lock_t>& bin_locks)
 {
     // Unpack basic parameters
     const float h    = params->h;
@@ -163,7 +163,7 @@ void compute_accel(sim_state_t* state, sim_param_t* params)
     int n = state->n;
 
     // Rehash the particles
-    hash_particles(state, h);
+    hash_particles(state, h, bin_locks);
 
     // Compute density and color
     compute_density(state, params);
