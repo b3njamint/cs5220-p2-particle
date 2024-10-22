@@ -1,0 +1,156 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 11  of event 'cycles:u'
+# Event count (approx.): 1101091
+#
+# Children      Self  Command  Shared Object     Symbol                  
+# ........  ........  .......  ................  ........................
+#
+    97.65%    97.65%  sph.x    ld-2.31.so        [.] do_lookup_x
+            |
+            ---0x899b8c96efa9efa3
+               do_lookup_x
+
+    97.65%     0.00%  sph.x    [unknown]         [.] 0x899b8c96efa9efa3
+            |
+            ---0x899b8c96efa9efa3
+               do_lookup_x
+
+     2.33%     0.00%  sph.x    [unknown]         [.] 0xffffffff81800f39
+            |
+            ---0xffffffff81800f39
+               0xffffffff817dbd53
+               0xffffffff8105e8db
+               |          
+               |--1.64%--0xffffffff81256068
+               |          |          
+               |           --1.64%--0xffffffff81255bd7
+               |                     |          
+               |                      --1.64%--0xffffffff8120df81
+               |                                0xffffffff8120c077
+               |          
+                --0.69%--0xffffffff81256104
+
+     2.33%     0.00%  sph.x    [unknown]         [.] 0xffffffff817dbd53
+            |
+            ---0xffffffff817dbd53
+               0xffffffff8105e8db
+               |          
+               |--1.64%--0xffffffff81256068
+               |          |          
+               |           --1.64%--0xffffffff81255bd7
+               |                     |          
+               |                      --1.64%--0xffffffff8120df81
+               |                                0xffffffff8120c077
+               |          
+                --0.69%--0xffffffff81256104
+
+     2.33%     0.00%  sph.x    [unknown]         [.] 0xffffffff8105e8db
+            |
+            ---0xffffffff8105e8db
+               |          
+               |--1.64%--0xffffffff81256068
+               |          |          
+               |           --1.64%--0xffffffff81255bd7
+               |                     |          
+               |                      --1.64%--0xffffffff8120df81
+               |                                0xffffffff8120c077
+               |          
+                --0.69%--0xffffffff81256104
+
+     1.64%     0.00%  sph.x    [unknown]         [.] 0xffffffff81256068
+            |
+            ---0xffffffff81256068
+               |          
+                --1.64%--0xffffffff81255bd7
+                          |          
+                           --1.64%--0xffffffff8120df81
+                                     0xffffffff8120c077
+
+     1.64%     0.00%  sph.x    [unknown]         [.] 0xffffffff81255bd7
+            |
+            ---0xffffffff81255bd7
+               |          
+                --1.64%--0xffffffff8120df81
+                          0xffffffff8120c077
+
+     1.64%     1.64%  sph.x    [unknown]         [k] 0xffffffff8120c077
+            |
+            ---acc_prof_unregister
+               0xffffffff81800f39
+               0xffffffff817dbd53
+               0xffffffff8105e8db
+               0xffffffff81256068
+               0xffffffff81255bd7
+               0xffffffff8120df81
+               0xffffffff8120c077
+
+     1.64%     0.00%  sph.x    libgomp.so.1.0.0  [.] acc_prof_unregister
+            |
+            ---acc_prof_unregister
+               0xffffffff81800f39
+               0xffffffff817dbd53
+               0xffffffff8105e8db
+               0xffffffff81256068
+               0xffffffff81255bd7
+               0xffffffff8120df81
+               0xffffffff8120c077
+
+     1.64%     0.00%  sph.x    [unknown]         [.] 0xffffffff8120df81
+            |
+            ---0xffffffff8120df81
+               0xffffffff8120c077
+
+     0.69%     0.69%  sph.x    [unknown]         [k] 0xffffffff81256104
+            |
+            ---0x545f5245505f5345
+               __GI___tunables_init
+               0xffffffff81800f39
+               0xffffffff817dbd53
+               0xffffffff8105e8db
+               0xffffffff81256104
+
+     0.69%     0.00%  sph.x    [unknown]         [k] 0x545f5245505f5345
+            |
+            ---0x545f5245505f5345
+               __GI___tunables_init
+               0xffffffff81800f39
+               0xffffffff817dbd53
+               0xffffffff8105e8db
+               0xffffffff81256104
+
+     0.69%     0.00%  sph.x    ld-2.31.so        [.] __GI___tunables_init
+            |
+            ---__GI___tunables_init
+               0xffffffff81800f39
+               0xffffffff817dbd53
+               0xffffffff8105e8db
+               0xffffffff81256104
+
+     0.01%     0.00%  sph.x    [unknown]         [.] 0000000000000000
+     0.01%     0.01%  sph.x    ld-2.31.so        [.] check_match
+     0.01%     0.00%  sph.x    [unknown]         [.] 0x00007f03579feeb0
+     0.01%     0.00%  sph.x    ld-2.31.so        [.] _dl_start_user
+     0.01%     0.01%  sph.x    ld-2.31.so        [.] _dl_start
+     0.00%     0.00%  sph.x    [unknown]         [.] 0x0002000200020002
+     0.00%     0.00%  sph.x    [unknown]         [k] 0xffffffff812763b2
+     0.00%     0.00%  sph.x    [unknown]         [k] 0xffffffff817ec1c0
+     0.00%     0.00%  sph.x    ld-2.31.so        [.] _start
+     0.00%     0.00%  sph.x    [unknown]         [k] 0xffffffff812bc918
+     0.00%     0.00%  sph.x    [unknown]         [.] 0xffffffff812552b6
+     0.00%     0.00%  sph.x    libc-2.31.so      [.] __strlen_avx2
+     0.00%     0.00%  sph.x    libgomp.so.1.0.0  [.] omp_display_env_8_
+     0.00%     0.00%  sph.x    libgomp.so.1.0.0  [.] 0x000000000000caad
+     0.00%     0.00%  sph.x    [unknown]         [.] 0xffffffff81294ebb
+     0.00%     0.00%  sph.x    [unknown]         [.] 0xffffffff8120df6e
+     0.00%     0.00%  sph.x    [unknown]         [.] 0xffffffff8125616d
+     0.00%     0.00%  sph.x    [unknown]         [.] 0xffffffff81279d58
+     0.00%     0.00%  sph.x    libgomp.so.1.0.0  [.] 0x00007f035760caad
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

@@ -1,0 +1,12 @@
+interact.cpp: In function ‘void compute_density(sim_state_t*, sim_param_t*)’:
+interact.cpp:72:35: error: ‘nowait’ is not valid for ‘#pragma omp parallel sections’
+   72 |     #pragma omp parallel sections nowait
+      |                                   ^~~~~~
+make: *** [<builtin>: interact.o] Error 1
+Failed to collect 'cycles:u' for the './sph.x' workload: No such file or directory
+srun: error: nid004314: task 0: Exited with exit code 255
+srun: Terminating StepId=32008079.0
+WARNING: The perf.data file's data size field is 0 which is unexpected.
+Was the 'perf record' command properly terminated?
+Error:
+failed to process sample

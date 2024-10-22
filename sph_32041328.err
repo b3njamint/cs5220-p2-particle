@@ -1,0 +1,5 @@
+[ perf record: Woken up 1 times to write data ]
+failed to mmap file
+[ perf record: Captured and wrote 0.026 MB perf.data ]
+srun: error: nid006857: task 0: Segmentation fault
+srun: Terminating StepId=32041328.0

@@ -1,0 +1,11 @@
+binhash.cpp:77: error: unterminated #ifdef
+   77 |     #ifdef USE_PARALLEL
+      | 
+make: *** [<builtin>: binhash.o] Error 1
+Failed to collect 'cycles:u' for the './sph.x' workload: No such file or directory
+srun: error: nid007021: task 0: Exited with exit code 255
+srun: Terminating StepId=32015682.0
+WARNING: The perf.data file's data size field is 0 which is unexpected.
+Was the 'perf record' command properly terminated?
+Error:
+failed to process sample

@@ -1,0 +1,6 @@
+g++  -std=c++11 -Wall -g -fopenmp  -c -o sph.o sph.cpp
+g++  -std=c++11 -Wall -g -fopenmp  -c -o params.o params.cpp
+g++  -std=c++11 -Wall -g -fopenmp  -c -o state.o state.cpp
+g++  -std=c++11 -Wall -g -fopenmp  -c -o binhash.o binhash.cpp
+g++  -std=c++11 -Wall -g -fopenmp  -c -o interact.o interact.cpp
+Performance data saved to perf_report_32010132.txt

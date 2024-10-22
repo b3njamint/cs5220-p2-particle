@@ -1,0 +1,109 @@
+g++  -std=c++11 -Wall -g -fopenmp  -c -o sph.o sph.cpp
+g++  -std=c++11 -Wall -g -fopenmp  -c -o params.o params.cpp
+g++  -std=c++11 -Wall -g -fopenmp  -c -o state.o state.cpp
+g++  -std=c++11 -Wall -g -fopenmp  -c -o binhash.o binhash.cpp
+g++  -std=c++11 -Wall -g -fopenmp  -c -o interact.o interact.cpp
+g++  -std=c++11 -Wall -g -fopenmp  -c -o leapfrog.o leapfrog.cpp
+g++  -std=c++11 -Wall -g -fopenmp  -c -o io_txt.o io_txt.cpp
+CC -std=c++11 -Wall -g -fopenmp sph.o params.o state.o binhash.o interact.o leapfrog.o io_txt.o -o sph.x -lm
+Frame: 1 of 100 - 1.0%
+Frame: 2 of 100 - 2.0%
+Frame: 3 of 100 - 3.0%
+Frame: 4 of 100 - 4.0%
+Frame: 5 of 100 - 5.0%
+Frame: 6 of 100 - 6.0%
+Frame: 7 of 100 - 7.0%
+Frame: 8 of 100 - 8.0%
+Frame: 9 of 100 - 9.0%
+Frame: 10 of 100 - 10.0%
+Frame: 11 of 100 - 11.0%
+Frame: 12 of 100 - 12.0%
+Frame: 13 of 100 - 13.0%
+Frame: 14 of 100 - 14.0%
+Frame: 15 of 100 - 15.0%
+Frame: 16 of 100 - 16.0%
+Frame: 17 of 100 - 17.0%
+Frame: 18 of 100 - 18.0%
+Frame: 19 of 100 - 19.0%
+Frame: 20 of 100 - 20.0%
+Frame: 21 of 100 - 21.0%
+Frame: 22 of 100 - 22.0%
+Frame: 23 of 100 - 23.0%
+Frame: 24 of 100 - 24.0%
+Frame: 25 of 100 - 25.0%
+Frame: 26 of 100 - 26.0%
+Frame: 27 of 100 - 27.0%
+Frame: 28 of 100 - 28.0%
+Frame: 29 of 100 - 29.0%
+Frame: 30 of 100 - 30.0%
+Frame: 31 of 100 - 31.0%
+Frame: 32 of 100 - 32.0%
+Frame: 33 of 100 - 33.0%
+Frame: 34 of 100 - 34.0%
+Frame: 35 of 100 - 35.0%
+Frame: 36 of 100 - 36.0%
+Frame: 37 of 100 - 37.0%
+Frame: 38 of 100 - 38.0%
+Frame: 39 of 100 - 39.0%
+Frame: 40 of 100 - 40.0%
+Frame: 41 of 100 - 41.0%
+Frame: 42 of 100 - 42.0%
+Frame: 43 of 100 - 43.0%
+Frame: 44 of 100 - 44.0%
+Frame: 45 of 100 - 45.0%
+Frame: 46 of 100 - 46.0%
+Frame: 47 of 100 - 47.0%
+Frame: 48 of 100 - 48.0%
+Frame: 49 of 100 - 49.0%
+Frame: 50 of 100 - 50.0%
+Frame: 51 of 100 - 51.0%
+Frame: 52 of 100 - 52.0%
+Frame: 53 of 100 - 53.0%
+Frame: 54 of 100 - 54.0%
+Frame: 55 of 100 - 55.0%
+Frame: 56 of 100 - 56.0%
+Frame: 57 of 100 - 57.0%
+Frame: 58 of 100 - 58.0%
+Frame: 59 of 100 - 59.0%
+Frame: 60 of 100 - 60.0%
+Frame: 61 of 100 - 61.0%
+Frame: 62 of 100 - 62.0%
+Frame: 63 of 100 - 63.0%
+Frame: 64 of 100 - 64.0%
+Frame: 65 of 100 - 65.0%
+Frame: 66 of 100 - 66.0%
+Frame: 67 of 100 - 67.0%
+Frame: 68 of 100 - 68.0%
+Frame: 69 of 100 - 69.0%
+Frame: 70 of 100 - 70.0%
+Frame: 71 of 100 - 71.0%
+Frame: 72 of 100 - 72.0%
+Frame: 73 of 100 - 73.0%
+Frame: 74 of 100 - 74.0%
+Frame: 75 of 100 - 75.0%
+Frame: 76 of 100 - 76.0%
+Frame: 77 of 100 - 77.0%
+Frame: 78 of 100 - 78.0%
+Frame: 79 of 100 - 79.0%
+Frame: 80 of 100 - 80.0%
+Frame: 81 of 100 - 81.0%
+Frame: 82 of 100 - 82.0%
+Frame: 83 of 100 - 83.0%
+Frame: 84 of 100 - 84.0%
+Frame: 85 of 100 - 85.0%
+Frame: 86 of 100 - 86.0%
+Frame: 87 of 100 - 87.0%
+Frame: 88 of 100 - 88.0%
+Frame: 89 of 100 - 89.0%
+Frame: 90 of 100 - 90.0%
+Frame: 91 of 100 - 91.0%
+Frame: 92 of 100 - 92.0%
+Frame: 93 of 100 - 93.0%
+Frame: 94 of 100 - 94.0%
+Frame: 95 of 100 - 95.0%
+Frame: 96 of 100 - 96.0%
+Frame: 97 of 100 - 97.0%
+Frame: 98 of 100 - 98.0%
+Frame: 99 of 100 - 99.0%
+Ran in 11.3096 seconds
+Performance data saved to perf_report_32008217.txt

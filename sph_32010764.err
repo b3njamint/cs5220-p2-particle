@@ -1,0 +1,12 @@
+binhash.cpp: In function ‘void hash_particles(sim_state_t*, float)’:
+binhash.cpp:88:24: error: ‘hash’ was not declared in this scope
+   88 |             pi->next = hash[bucket];
+      |                        ^~~~
+make: *** [<builtin>: binhash.o] Error 1
+Failed to collect 'cycles:u' for the './sph.x' workload: No such file or directory
+srun: error: nid004367: task 0: Exited with exit code 255
+srun: Terminating StepId=32010764.0
+WARNING: The perf.data file's data size field is 0 which is unexpected.
+Was the 'perf record' command properly terminated?
+Error:
+failed to process sample

@@ -1,0 +1,12 @@
+binhash.cpp: In function ‘void hash_particles(sim_state_t*, float)’:
+binhash.cpp:86:17: warning: unused variable ‘temp_hash’ [-Wunused-variable]
+   86 |     particle_t* temp_hash[HASH_SIZE][s->n]; // Assuming n particles in sim_state_t
+      |                 ^~~~~~~~~
+binhash.cpp:87:9: warning: unused variable ‘temp_count’ [-Wunused-variable]
+   87 |     int temp_count[HASH_SIZE] = {0}; // Count of particles in each bucket
+      |         ^~~~~~~~~~
+[ perf record: Woken up 1 times to write data ]
+failed to mmap file
+[ perf record: Captured and wrote 0.008 MB perf.data ]
+srun: error: nid006566: task 0: Segmentation fault
+srun: Terminating StepId=32041266.0

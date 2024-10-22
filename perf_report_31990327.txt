@@ -1,0 +1,819 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 163K of event 'cycles:u'
+# Event count (approx.): 125296190090
+#
+# Children      Self  Command  Shared Object         Symbol                                  
+# ........  ........  .......  ....................  ........................................
+#
+    89.60%     0.00%  sph.x    [unknown]             [.] 0000000000000000
+            |
+            ---0
+               |          
+               |--58.09%--omp_fulfill_event
+               |          |          
+               |          |--29.98%--compute_density
+               |          |          |          
+               |          |          |--15.23%--update_density
+               |          |          |          |          
+               |          |          |           --4.13%--vec3_dist2
+               |          |          |          
+               |          |           --12.24%--particle_neighborhood
+               |          |                     |          
+               |          |                      --10.88%--zm_encode
+               |          |                                |          
+               |          |                                 --10.08%--zm_part1by2
+               |          |          
+               |           --27.55%--compute_accel
+               |                     |          
+               |                     |--12.20%--particle_neighborhood
+               |                     |          |          
+               |                     |           --10.83%--zm_encode
+               |                     |                     |          
+               |                     |                      --10.05%--zm_part1by2
+               |                     |          
+               |                      --9.67%--update_forces
+               |                                |          
+               |                                |--1.55%--vec3_len2
+               |                                |          
+               |                                |--1.31%--vec3_diff
+               |                                |          
+               |                                 --0.91%--vec3_saxpy
+               |          
+                --31.50%--omp_get_num_procs
+
+    58.11%     0.05%  sph.x    libgomp.so.1.0.0      [.] omp_fulfill_event
+            |          
+             --58.06%--omp_fulfill_event
+                       |          
+                       |--29.98%--compute_density
+                       |          |          
+                       |          |--15.23%--update_density
+                       |          |          |          
+                       |          |           --4.13%--vec3_dist2
+                       |          |          
+                       |           --12.24%--particle_neighborhood
+                       |                     |          
+                       |                      --10.88%--zm_encode
+                       |                                |          
+                       |                                 --10.08%--zm_part1by2
+                       |          
+                        --27.55%--compute_accel
+                                  |          
+                                  |--12.20%--particle_neighborhood
+                                  |          |          
+                                  |           --10.83%--zm_encode
+                                  |                     |          
+                                  |                      --10.05%--zm_part1by2
+                                  |          
+                                   --9.67%--update_forces
+                                             |          
+                                             |--1.55%--vec3_len2
+                                             |          
+                                             |--1.31%--vec3_diff
+                                             |          
+                                              --0.91%--vec3_saxpy
+
+    33.86%     2.72%  sph.x    sph.x                 [.] compute_density
+            |          
+            |--31.14%--compute_density
+            |          |          
+            |          |--17.01%--update_density
+            |          |          |          
+            |          |           --4.60%--vec3_dist2
+            |          |          
+            |           --13.97%--particle_neighborhood
+            |                     |          
+            |                      --12.42%--zm_encode
+            |                                |          
+            |                                 --11.52%--zm_part1by2
+            |          
+             --2.37%--0
+                       omp_fulfill_event
+                       compute_density
+
+    31.60%     6.00%  sph.x    sph.x                 [.] compute_accel
+            |          
+            |--25.60%--compute_accel
+            |          |          
+            |          |--13.98%--particle_neighborhood
+            |          |          |          
+            |          |           --12.39%--zm_encode
+            |          |                     |          
+            |          |                      --11.49%--zm_part1by2
+            |          |          
+            |           --11.29%--update_forces
+            |                     |          
+            |                     |--1.84%--vec3_len2
+            |                     |          
+            |                     |--1.54%--vec3_diff
+            |                     |          
+            |                      --1.06%--vec3_saxpy
+            |          
+            |--5.38%--0
+            |          omp_fulfill_event
+            |          compute_accel
+            |          
+             --0.61%--0x7fa158bbf010
+                       0x7fa158bbf010
+                       GOMP_parallel
+                       compute_accel
+
+    31.53%    31.46%  sph.x    libgomp.so.1.0.0      [.] omp_get_num_procs
+            |          
+             --31.45%--0
+                       |          
+                        --31.45%--omp_get_num_procs
+
+    27.95%     3.09%  sph.x    sph.x                 [.] particle_neighborhood
+            |          
+            |--24.86%--particle_neighborhood
+            |          |          
+            |           --24.81%--zm_encode
+            |                     |          
+            |                      --23.01%--zm_part1by2
+            |          
+             --2.69%--0
+                       omp_fulfill_event
+                       |          
+                       |--1.35%--compute_accel
+                       |          particle_neighborhood
+                       |          
+                        --1.34%--compute_density
+                                  particle_neighborhood
+
+    25.42%     1.96%  sph.x    sph.x                 [.] zm_encode
+            |          
+            |--23.47%--zm_encode
+            |          |          
+            |           --23.46%--zm_part1by2
+            |          
+             --1.69%--0
+                       omp_fulfill_event
+                       |          
+                       |--0.85%--compute_density
+                       |          |          
+                       |           --0.80%--particle_neighborhood
+                       |                     zm_encode
+                       |          
+                        --0.85%--compute_accel
+                                  |          
+                                   --0.78%--particle_neighborhood
+                                             zm_encode
+
+    23.52%    23.50%  sph.x    sph.x                 [.] zm_part1by2
+            |          
+            |--20.16%--0
+            |          omp_fulfill_event
+            |          |          
+            |          |--10.09%--compute_density
+            |          |          particle_neighborhood
+            |          |          |          
+            |          |           --10.07%--zm_encode
+            |          |                     zm_part1by2
+            |          |          
+            |           --10.06%--compute_accel
+            |                     particle_neighborhood
+            |                     |          
+            |                      --10.04%--zm_encode
+            |                                zm_part1by2
+            |          
+             --2.89%--0x7fa158bbf010
+                       0x7fa158bbf010
+                       GOMP_parallel
+                       |          
+                       |--1.45%--compute_accel
+                       |          particle_neighborhood
+                       |          |          
+                       |           --1.44%--zm_encode
+                       |                     zm_part1by2
+                       |          
+                        --1.44%--compute_density
+                                  particle_neighborhood
+                                  |          
+                                   --1.44%--zm_encode
+                                             zm_part1by2
+
+    17.14%    12.53%  sph.x    sph.x                 [.] update_density
+            |          
+            |--11.21%--0
+            |          omp_fulfill_event
+            |          |          
+            |           --11.09%--compute_density
+            |                     update_density
+            |          
+            |--4.61%--update_density
+            |          |          
+            |           --4.60%--vec3_dist2
+            |          
+             --1.32%--0x7fa158bbf010
+                       0x7fa158bbf010
+                       GOMP_parallel
+                       |          
+                        --1.30%--compute_density
+                                  update_density
+
+    11.37%     6.24%  sph.x    sph.x                 [.] update_forces
+            |          
+            |--5.39%--0
+            |          omp_fulfill_event
+            |          |          
+            |           --5.32%--compute_accel
+            |                     update_forces
+            |          
+            |--5.13%--update_forces
+            |          |          
+            |          |--1.84%--vec3_len2
+            |          |          
+            |          |--1.54%--vec3_diff
+            |          |          
+            |           --1.06%--vec3_saxpy
+            |          
+             --0.85%--0x7fa158bbf010
+                       0x7fa158bbf010
+                       GOMP_parallel
+                       |          
+                        --0.84%--compute_accel
+                                  update_forces
+
+     8.01%     0.00%  sph.x    libgomp.so.1.0.0      [.] GOMP_parallel
+            |          
+             --8.01%--GOMP_parallel
+                       |          
+                       |--4.05%--compute_accel
+                       |          |          
+                       |          |--1.77%--particle_neighborhood
+                       |          |          |          
+                       |          |           --1.55%--zm_encode
+                       |          |                     |          
+                       |          |                      --1.44%--zm_part1by2
+                       |          |          
+                       |           --1.62%--update_forces
+                       |          
+                        --3.88%--compute_density
+                                  |          
+                                  |--1.78%--update_density
+                                  |          
+                                   --1.73%--particle_neighborhood
+                                             |          
+                                              --1.54%--zm_encode
+                                                        |          
+                                                         --1.44%--zm_part1by2
+
+     7.97%     0.00%  sph.x    [unknown]             [.] 0x00007fa158bbf010
+            |
+            ---0x7fa158bbf010
+               |          
+                --7.97%--0x7fa158bbf010
+                          GOMP_parallel
+                          |          
+                          |--4.05%--compute_accel
+                          |          |          
+                          |          |--1.77%--particle_neighborhood
+                          |          |          |          
+                          |          |           --1.55%--zm_encode
+                          |          |                     |          
+                          |          |                      --1.44%--zm_part1by2
+                          |          |          
+                          |           --1.62%--update_forces
+                          |          
+                           --3.88%--compute_density
+                                     |          
+                                     |--1.78%--update_density
+                                     |          
+                                      --1.73%--particle_neighborhood
+                                                |          
+                                                 --1.54%--zm_encode
+                                                           |          
+                                                            --1.44%--zm_part1by2
+
+     4.70%     4.70%  sph.x    sph.x                 [.] vec3_dist2
+            |          
+             --4.22%--0
+                       omp_fulfill_event
+                       compute_density
+                       |          
+                        --4.13%--update_density
+                                  vec3_dist2
+
+     2.29%     0.00%  sph.x    [unknown]             [k] 0x258d4c54415541d7
+            |
+            ---0x258d4c54415541d7
+               __libc_start_main
+               |          
+                --2.29%--main
+                          |          
+                          |--0.99%--leapfrog_step
+                          |          |          
+                          |           --0.69%--vec3_saxpy
+                          |          
+                           --0.74%--compute_accel
+                                     |          
+                                      --0.72%--hash_particles
+                                                |          
+                                                 --0.63%--particle_bucket
+
+     2.29%     0.00%  sph.x    libc-2.31.so          [.] __libc_start_main
+            |
+            ---__libc_start_main
+               |          
+                --2.29%--main
+                          |          
+                          |--0.99%--leapfrog_step
+                          |          |          
+                          |           --0.69%--vec3_saxpy
+                          |          
+                           --0.74%--compute_accel
+                                     |          
+                                      --0.72%--hash_particles
+                                                |          
+                                                 --0.63%--particle_bucket
+
+     2.29%     0.00%  sph.x    sph.x                 [.] main
+            |
+            ---main
+               |          
+               |--0.99%--leapfrog_step
+               |          |          
+               |           --0.69%--vec3_saxpy
+               |          
+                --0.74%--compute_accel
+                          |          
+                           --0.72%--hash_particles
+                                     |          
+                                      --0.63%--particle_bucket
+
+     1.89%     1.88%  sph.x    sph.x                 [.] vec3_len2
+            |          
+             --1.58%--0
+                       omp_fulfill_event
+                       compute_accel
+                       |          
+                        --1.55%--update_forces
+                                  vec3_len2
+
+     1.81%     1.81%  sph.x    sph.x                 [.] vec3_saxpy
+            |          
+            |--0.95%--0
+            |          omp_fulfill_event
+            |          compute_accel
+            |          |          
+            |           --0.91%--update_forces
+            |                     vec3_saxpy
+            |          
+             --0.70%--0x258d4c54415541d7
+                       __libc_start_main
+                       main
+                       |          
+                        --0.69%--leapfrog_step
+                                  |          
+                                   --0.69%--vec3_saxpy
+
+     1.71%     1.71%  sph.x    sph.x                 [.] vec3_diff
+            |          
+             --1.46%--0
+                       omp_fulfill_event
+                       compute_accel
+                       |          
+                        --1.31%--update_forces
+                                  vec3_diff
+
+     0.99%     0.06%  sph.x    sph.x                 [.] leapfrog_step
+            |          
+             --0.93%--leapfrog_step
+                       |          
+                        --0.69%--vec3_saxpy
+
+     0.74%     0.00%  sph.x    sph.x                 [.] compute_accel
+            |          
+             --0.74%--compute_accel
+                       |          
+                        --0.72%--hash_particles
+                                  |          
+                                   --0.63%--particle_bucket
+
+     0.72%     0.08%  sph.x    sph.x                 [.] hash_particles
+            |          
+             --0.64%--hash_particles
+                       particle_bucket
+
+     0.64%     0.14%  sph.x    sph.x                 [.] particle_bucket
+     0.48%     0.01%  sph.x    libdarshan.so.0.0.0   [.] fprintf
+     0.47%     0.02%  sph.x    libc-2.31.so          [.] __vfprintf_internal
+     0.44%     0.07%  sph.x    libc-2.31.so          [.] printf_positional
+     0.30%     0.29%  sph.x    libc-2.31.so          [.] __printf_fp_l
+     0.25%     0.25%  sph.x    sph.x                 [.] std::sqrt
+     0.24%     0.24%  sph.x    libm-2.31.so          [.] __sqrtf_finite
+     0.20%     0.13%  sph.x    sph.x                 [.] compute_accel
+     0.19%     0.19%  sph.x    libm-2.31.so          [.] sqrtf
+     0.16%     0.16%  sph.x    sph.x                 [.] vec3_set
+     0.15%     0.15%  sph.x    sph.x                 [.] compute_density
+     0.12%     0.05%  sph.x    sph.x                 [.] vec3_copy
+     0.12%     0.11%  sph.x    sph.x                 [.] reflect_bc
+     0.06%     0.06%  sph.x    sph.x                 [.] check_state
+     0.06%     0.06%  sph.x    libc-2.31.so          [.] hack_digit
+     0.05%     0.05%  sph.x    libc-2.31.so          [.] __mpn_mul_1
+     0.04%     0.00%  sph.x    [unknown]             [.] 0xffffffff81801119
+     0.04%     0.00%  sph.x    [unknown]             [.] 0xffffffff817d9c46
+     0.04%     0.00%  sph.x    [unknown]             [.] 0xffffffff8101ce01
+     0.03%     0.00%  sph.x    [unknown]             [.] 0x00000d34411ccccd
+     0.03%     0.00%  sph.x    [unknown]             [.] 0xffffffff810eb087
+     0.03%     0.00%  sph.x    [unknown]             [.] 0xffffffff810e62dd
+     0.03%     0.00%  sph.x    [unknown]             [.] 0xffffffff810e6260
+     0.03%     0.00%  sph.x    [unknown]             [.] 0xffffffff810e60de
+     0.03%     0.00%  sph.x    [unknown]             [.] 0xffffffffa04343a1
+     0.02%     0.00%  sph.x    [unknown]             [.] 0xffffffff810a2386
+     0.02%     0.00%  sph.x    [unknown]             [.] 0xffffffffa040d7b5
+     0.02%     0.02%  sph.x    libc-2.31.so          [.] __parse_one_specmb
+     0.02%     0.00%  sph.x    [unknown]             [.] 0xffffffff81800119
+     0.02%     0.02%  sph.x    libc-2.31.so          [.] __memset_avx2_erms
+     0.02%     0.00%  sph.x    [unknown]             [.] 0x3b031b0100000000
+     0.02%     0.00%  sph.x    [unknown]             [.] 0xffffffff818012ad
+     0.02%     0.00%  sph.x    [unknown]             [.] 0xffffffff817dba82
+     0.01%     0.00%  sph.x    [unknown]             [.] 0xffffffff8164aefd
+     0.01%     0.00%  sph.x    [unknown]             [.] 0xffffffff81049442
+     0.01%     0.01%  sph.x    sph.x                 [.] damp_reflect
+     0.01%     0.01%  sph.x    libc-2.31.so          [.] __strchrnul_avx2
+     0.01%     0.00%  sph.x    [unknown]             [.] 0xffffffff8110c585
+     0.01%     0.01%  sph.x    libc-2.31.so          [.] __strlen_avx2
+     0.01%     0.00%  sph.x    [unknown]             [.] 0xffffffff8180148d
+     0.01%     0.00%  sph.x    [unknown]             [.] 0xffffffff810b0e12
+     0.01%     0.00%  sph.x    [unknown]             [.] 0xffffffff817d8ae2
+     0.01%     0.01%  sph.x    libc-2.31.so          [.] _IO_file_xsputn
+     0.01%     0.00%  sph.x    [unknown]             [.] 0xffffffff817db9f2
+     0.01%     0.00%  sph.x    [unknown]             [.] 0xffffffff81045c41
+     0.01%     0.00%  sph.x    [unknown]             [.] 0xffffffff8110bb20
+     0.01%     0.00%  sph.x    [unknown]             [.] 0x0001743b031b0100
+     0.01%     0.01%  sph.x    libgomp.so.1.0.0      [.] GOMP_single_copy_end
+     0.01%     0.01%  sph.x    libc-2.31.so          [.] __mpn_rshift
+     0.01%     0.00%  sph.x    [unknown]             [.] 0xffffffff8111e017
+     0.01%     0.00%  sph.x    [unknown]             [.] 0xffffffff8111df6d
+     0.01%     0.01%  sph.x    [unknown]             [k] 0xffffffff81801260
+     0.01%     0.01%  sph.x    [unknown]             [k] 0xffffffff81800230
+     0.01%     0.01%  sph.x    libc-2.31.so          [.] __mpn_lshift
+     0.01%     0.00%  sph.x    [unknown]             [.] 0xffffffffa0305582
+     0.01%     0.01%  sph.x    sph.x                 [.] write_frame_data
+     0.01%     0.00%  sph.x    [unknown]             [.] 0x002d000001743b03
+     0.01%     0.00%  sph.x    [unknown]             [.] 0xffffffff810aa638
+     0.01%     0.00%  sph.x    [unknown]             [.] 0xffffffff817d8abd
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8104fd59
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff811251c4
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff817d8aee
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81642f09
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81800228
+     0.00%     0.00%  sph.x    libc-2.31.so          [.] __memcpy_avx_unaligned_erms
+     0.00%     0.00%  sph.x    libc-2.31.so          [.] __libc_alloca_cutoff
+     0.00%     0.00%  sph.x    libc-2.31.so          [.] write
+     0.00%     0.00%  sph.x    libc-2.31.so          [.] __mpn_extract_double
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8112196e
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810eb070
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810b1615
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810af6d7
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810be53a
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x0000019600000d34
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8104940d
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8110c521
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x0000050400000d34
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81801263
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff811214c2
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810257e3
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81642f2a
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81801a1a
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff812d29e5
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81121917
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff817dc328
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8110aea5
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817ec1c0
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81801100
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x0000019400000d34
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810b0db4
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810bd7c3
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810b0da6
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81904104
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff817ec1c5
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff817dc309
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817dc210
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff817dc206
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff812d27c3
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff812cfebf
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffffa0d61710
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810b15e2
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81421f32
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8112509a
+     0.00%     0.00%  sph.x    libpthread-2.31.so    [.] _pthread_cleanup_push_defer
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8104ff02
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8110f664
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8110ae4c
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8110aea9
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8110f61f
+     0.00%     0.00%  sph.x    sph.x                 [.] sqrtf@plt
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8110aecc
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffffa0305271
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81801a15
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810e62d1
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817ebfac
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8107af3d
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff817d9c3a
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8104ff0b
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810b0cfc
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817eb82b
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8180022a
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffffa0305262
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8110ea04
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817d966b
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8110c4fb
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810ba415
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810eb00f
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81103943
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x000001a100000d34
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81800080
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810aa611
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810a9767
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810bd695
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810bae58
+     0.00%     0.00%  sph.x    sph.x                 [.] vec3_scalev
+     0.00%     0.00%  sph.x    libgomp.so.1.0.0      [.] omp_get_num_threads
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff818012a2
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81801482
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8118b3e1
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81125095
+     0.00%     0.00%  sph.x    libc-2.31.so          [.] __mpn_mul
+     0.00%     0.00%  sph.x    ld-2.31.so            [.] _dl_sysdep_start
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x0000000000000040
+     0.00%     0.00%  sph.x    ld-2.31.so            [.] dl_main
+     0.00%     0.00%  sph.x    libc-2.31.so          [.] @plt
+     0.00%     0.00%  sph.x    libc-2.31.so          [.] __libc_scratch_buffer_set_array_size
+     0.00%     0.00%  sph.x    ld-2.31.so            [.] _dl_relocate_object
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81800f39
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff817dbd53
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8105e8db
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x000001a000000d34
+     0.00%     0.00%  sph.x    ld-2.31.so            [.] do_lookup_x
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3c4645fd3c4591b4
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3c16abf13c15f20e
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x3bc72b523bb59573
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81256068
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffffa0d5fd4e
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x313835312e312032
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8116c9c9
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8110ae91
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3c439f933c415590
+     0.00%     0.00%  sph.x    libdarshan.so.0.0.0   [.] printf
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8118b60f
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff817dc30e
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81123d1a
+     0.00%     0.00%  sph.x    sph.x                 [.] init_particles
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x00007fa15effeeb0
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8118b4cb
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff817dc201
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8118c330
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8118b586
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8146024f
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff811214ed
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff811246b0
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff811243ee
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81120d93
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x00007fa158be06f8
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x351589c53b31ff23
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810eaff5
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8110bbc2
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8110bbbc
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3b87569e3b800038
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81800232
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810fe0e7
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81049413
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3c461ea43c469770
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817dc214
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81801440
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8146646d
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8110bbac
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8110b899
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81121915
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81904109
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810257e0
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff818019dd
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x3e32e53a3df14067
+     0.00%     0.00%  sph.x    [JIT] tid 631603      [.] 0x00007fa156bb66d4
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3546ca7d3b311cde
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817eb810
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810eb005
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8111dfb5
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810fddb7
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8164df9e
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff817db9f7
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8107b062
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff817eb988
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81650fab
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81650a89
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8164f0e7
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8164ee2c
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810e6289
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810e9d2c
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810e6284
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810b0da9
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81642f00
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817d8add
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810a9773
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810b2d93
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810b8b47
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810aa5fd
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3ac4f85d3acd6eab
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8118b4d2
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x3c4218263c3eed6b
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x3fd2b5e73de9832e
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x00007fa158beff94
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810e60f4
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8109ce9c
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x34f9925e3b2c1252
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817d8ac2
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8155bc0a
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810e6271
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff817dc409
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8164aee6
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817eb84a
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x352d17803afbaaf2
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x3e3d4dd73eabb113
+     0.00%     0.00%  sph.x    [JIT] tid 631603      [.] 0x00007fa155bb46d4
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8112197d
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x3820a7ae3affab63
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffffa0305255
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810b16e2
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3be5b9573ba75e0e
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810b6813
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3510b4a53b17de8f
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3bd8816c3b84f7ef
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810b82d4
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8111ff53
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81123d28
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x34b2c0323b1d53ca
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x35026f133b33a779
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3508ed213af5ded8
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x33ac2b8f3b25fdcf
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3b9e0a3c3a41d353
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3ae6209f3af0ff8c
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x34fe9e3a3b128cfa
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x347000923b1c5473
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x34c3495e3b001a68
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x35321def3afc626d
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x34e3048b3b0e3c1c
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817eb826
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8110ae45
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3c40b4013c3ebc61
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x34eddc473b2dc243
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x354745bf3afcb33b
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3c277e903c264922
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x354c46f83afa7292
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810ba40d
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3a05e0ee394fef7e
+     0.00%     0.00%  sph.x    libquadmath.so.0.0.0  [.] flt128_printf_fp
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8101cdd6
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3a74684f3975f3d1
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x34a2b48e3b2a2aa4
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817d9bd7
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810b67dd
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81123d2b
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x34cffbba3b2eea97
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x33cd1e5a3b20e51d
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x350c9f4e3af67066
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x349a4d9a3afee80e
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x3d10e2d53d3d9ddb
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x00007fa158bc7550
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810a237b
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x364e1fe93b112d77
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x34bfc42c3b324314
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81123cb7
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x34e087a93b0bc578
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x000001a200000d34
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x388d48653a8b5643
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810aa545
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810d4558
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810ea2c5
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81121910
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817dc1e6
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x3ba9410a3922d71c
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x33a90a483b2107cb
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3577b4183b15ec96
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x34e3d8b53afdf6b0
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810d464f
+     0.00%     0.00%  sph.x    sph.x                 [.] compute_density
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810939fe
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817dc3d9
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff817d9bcf
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81103940
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x33dc6e413b27239f
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81800083
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3bb89b233acfa5ba
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x39dc396b39ca3684
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810ea957
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff810eb017
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x34d250bd3afcc006
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81800114
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810aa5b9
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff818001c3
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x35185fd73b13bc09
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3a1964d438c1c054
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x349b61d53afd0128
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810b82b6
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810a2378
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff810eb0a8
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8109ceaf
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x3fa794783e898918
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x00007fa158bec394
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3a8d52a239cb6a7e
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x34c960313b316c02
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8107af54
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff817db9ea
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x33f2e3223b27605e
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3475b48f3b1c4927
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x35527b9c3afcb307
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x3c17b6bb3c16b63a
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x34ae0c6a3b1d2ac8
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffffa0d5fe27
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x393838312e310a31
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817d9660
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8118b422
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x322032302d653632
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x3befb0433bd9e598
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff817d9671
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x3335332e310a3330
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x35171c0e3b140d19
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x350625473b0c59f5
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x34c13dfd3b004708
+     0.00%     0.00%  sph.x    sph.x                 [.] leapfrog_start
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81125075
+     0.00%     0.00%  sph.x    ld-2.31.so            [.] strcmp
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x34c902373b2b96c4
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x34dd42393b32f6d8
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff812d263c
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x332e320a31302d65
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3531e3663b2a3fea
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3500b5623b319315
+     0.00%     0.00%  sph.x    libquadmath.so.0.0.0  [.] flt128_ais
+     0.00%     0.00%  sph.x    ld-2.31.so            [.] _dl_check_map_versions
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff812a15fd
+     0.00%     0.00%  sph.x    [unknown]             [k] 0x31313830322e340a
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffffa0d5ff50
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffffa0d4eaf6
+     0.00%     0.00%  sph.x    libpthread-2.31.so    [.] _pthread_cleanup_pop_restore
+     0.00%     0.00%  sph.x    libpmi2.so.0.6.0      [.] register_tm_clones
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8146f0c7
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81255cd8
+     0.00%     0.00%  sph.x    libc-2.31.so          [.] __printf_fp
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x0000007600000d34
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x34eae7fa3b0044e6
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8129251a
+     0.00%     0.00%  sph.x    sph.x                 [.] place_particles
+     0.00%     0.00%  sph.x    sph.x                 [.] normalize_mass
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81255832
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81294eac
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x354b2f463b1b51cf
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff81256012
+     0.00%     0.00%  sph.x    ld-2.31.so            [.] _dl_map_object
+     0.00%     0.00%  sph.x    ld-2.31.so            [.] _dl_map_object_from_fd
+     0.00%     0.00%  sph.x    ld-2.31.so            [.] strlen
+     0.00%     0.00%  sph.x    ld-2.31.so            [.] __GI___tunables_init
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3d454d414e45444f
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x415242494c5f444c
+     0.00%     0.00%  sph.x    libc-2.31.so          [.] getenv
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x31582f7273752f3d
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x00007ffe714dae6b
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3d485441505f5952
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x383d5245565f4843
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x00007ffe714dc917
+     0.00%     0.00%  sph.x    ld-2.31.so            [.] check_match
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x00007fa1615ffdd0
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x756c735f6d6c705f
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x5f5245505f534b53
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x00007ffe714da079
+     0.00%     0.00%  sph.x    ld-2.31.so            [.] _dl_start_user
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81255bd7
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8120e153
+     0.00%     0.00%  sph.x    libc-2.31.so          [.] __ctype_init
+     0.00%     0.00%  sph.x    ld-2.31.so            [.] _dl_start
+     0.00%     0.00%  sph.x    libpthread-2.31.so    [.] start_thread
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8125a6d8
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8180011e
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x0002000200020002
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x3d5041525453544f
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff8105e813
+     0.00%     0.00%  sph.x    [unknown]             [.] 0x00007ffe714d7fee
+     0.00%     0.00%  sph.x    libc-2.31.so          [.] _setjmp
+     0.00%     0.00%  sph.x    libpthread-2.31.so    [.] __pthread_enable_asynccancel
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8118b567
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8123382a
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff812c077e
+     0.00%     0.00%  sph.x    [unknown]             [k] 0xffffffff8120df58
+     0.00%     0.00%  sph.x    ld-2.31.so            [.] _start
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff812552b6
+     0.00%     0.00%  sph.x    libpthread-2.31.so    [.] pthread_setaffinity_np
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81294ebb
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff812552df
+     0.00%     0.00%  sph.x    [unknown]             [.] 0xffffffff81279e31
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

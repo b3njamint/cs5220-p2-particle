@@ -17,8 +17,9 @@ export OMP_PROC_BIND=close
 export OMP_PLACES=cores
 
 make exe
-srun --cpu-bind=cores perf record -F 99 -g -o perf.data ./sph.x
+# srun --cpu-bind=cores perf record -F 99 -g -o perf.data ./sph.x
+srun --cpu-bind=cores ./sph.x
 
-PERF_REPORT="perf_report_${SLURM_JOB_ID}.txt"
-perf report --input=perf.data > $PERF_REPORT
-echo "Performance data saved to $PERF_REPORT"
+# PERF_REPORT="perf_report_${SLURM_JOB_ID}.txt"
+# perf report --input=perf.data > $PERF_REPORT
+# echo "Performance data saved to $PERF_REPORT"

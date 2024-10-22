@@ -1,0 +1,122 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 186  of event 'cycles:u'
+# Event count (approx.): 111680012
+#
+# Children      Self  Command  Shared Object       Symbol                          
+# ........  ........  .......  ..................  ................................
+#
+    99.05%     0.00%  sph.x    [unknown]           [.] 0000000000000000
+            |
+            ---0
+               |          
+                --99.05%--omp_get_num_procs
+
+    99.05%    99.05%  sph.x    libgomp.so.1.0.0    [.] omp_get_num_procs
+            |          
+             --99.05%--0
+                       omp_get_num_procs
+
+     0.93%     0.93%  sph.x    [unknown]           [k] 0xffffffff81800ee0
+            |          
+             --0.93%--0x40
+                       _dl_sysdep_start
+                       dl_main
+                       _dl_relocate_object
+                       0xffffffff81800ee0
+
+     0.93%     0.00%  sph.x    [unknown]           [k] 0x0000000000000040
+            |
+            ---0x40
+               _dl_sysdep_start
+               dl_main
+               _dl_relocate_object
+               0xffffffff81800ee0
+
+     0.93%     0.00%  sph.x    ld-2.31.so          [.] _dl_sysdep_start
+            |
+            ---_dl_sysdep_start
+               dl_main
+               _dl_relocate_object
+               0xffffffff81800ee0
+
+     0.93%     0.00%  sph.x    ld-2.31.so          [.] dl_main
+            |
+            ---dl_main
+               _dl_relocate_object
+               0xffffffff81800ee0
+
+     0.93%     0.00%  sph.x    ld-2.31.so          [.] _dl_relocate_object
+            |
+            ---_dl_relocate_object
+               0xffffffff81800ee0
+
+     0.02%     0.02%  sph.x    libc-2.31.so        [.] __getpagesize
+     0.01%     0.00%  sph.x    [unknown]           [.] 0x545f5245505f5345
+     0.01%     0.01%  sph.x    ld-2.31.so          [.] __GI___tunables_init
+     0.00%     0.00%  sph.x    libgomp.so.1.0.0    [.] omp_fulfill_event
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff81800f39
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff817dbd53
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff8118b4d2
+     0.00%     0.00%  sph.x    sph.x               [.] hash_particles
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff8105eae7
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff817e7ff1
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff817e7779
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff817eb7da
+     0.00%     0.00%  sph.x    libc-2.31.so        [.] getenv
+     0.00%     0.00%  sph.x    [unknown]           [.] 0x00007ffefafe5f3b
+     0.00%     0.00%  sph.x    ld-2.31.so          [.] _dl_start_user
+     0.00%     0.00%  sph.x    ld-2.31.so          [.] _dl_start
+     0.00%     0.00%  sph.x    libpthread-2.31.so  [.] start_thread
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff81800119
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff817d8aee
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff817d8abd
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff817dc328
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff8118b4cb
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff817dc201
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff817dc206
+     0.00%     0.00%  sph.x    [unknown]           [.] 0x0002000200020002
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff81028b7d
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff8118b3e0
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff81904104
+     0.00%     0.00%  sph.x    ld-2.31.so          [.] _start
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff8105e8db
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff817dc309
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff81103940
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff81256068
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff817ec1c5
+     0.00%     0.00%  sph.x    libc-2.31.so        [.] __strlen_avx2
+     0.00%     0.00%  sph.x    libc-2.31.so        [.] _setjmp
+     0.00%     0.00%  sph.x    libgomp.so.1.0.0    [.] omp_display_env_8_
+     0.00%     0.00%  sph.x    libgomp.so.1.0.0    [.] 0x000000000000caad
+     0.00%     0.00%  sph.x    libpthread-2.31.so  [.] __pthread_enable_asynccancel
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff810dc629
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff81120f35
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff8118b415
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff8118b4bf
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff8118b567
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff8118b586
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff81276225
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff81255b7b
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff817dc210
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff817dc2f0
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff817dc2fa
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff817dc2fc
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff817ec2f0
+     0.00%     0.00%  sph.x    [unknown]           [k] 0xffffffff8180008c
+     0.00%     0.00%  sph.x    libc-2.31.so        [.] __clone
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff812552b6
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff81294ebb
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff81279d58
+     0.00%     0.00%  sph.x    libgomp.so.1.0.0    [.] 0x00007f2a53c0caad
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff8105e7f2
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff817d8ae2
+     0.00%     0.00%  sph.x    [unknown]           [.] 0xffffffff81800114
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

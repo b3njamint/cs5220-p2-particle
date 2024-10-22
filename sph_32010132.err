@@ -1,0 +1,42 @@
+interact.cpp:35:42: error: expected ‘,’ or ‘...’ before ‘pi’
+   35 | void update_density(particle_t* restrict pi, particle_t* restrict pj, float h2, float C)
+      |                                          ^~
+interact.cpp: In function ‘void update_density(particle_t*)’:
+interact.cpp:37:27: error: ‘pi’ was not declared in this scope
+   37 |     float r2 = vec3_dist2(pi->x, pj->x);
+      |                           ^~
+interact.cpp:37:34: error: ‘pj’ was not declared in this scope
+   37 |     float r2 = vec3_dist2(pi->x, pj->x);
+      |                                  ^~
+interact.cpp:38:16: error: ‘h2’ was not declared in this scope; did you mean ‘r2’?
+   38 |     float z  = h2-r2;
+      |                ^~
+      |                r2
+interact.cpp:40:24: error: ‘C’ was not declared in this scope
+   40 |         float rho_ij = C*z*z*z;
+      |                        ^
+interact.cpp:40:15: warning: unused variable ‘rho_ij’ [-Wunused-variable]
+   40 |         float rho_ij = C*z*z*z;
+      |               ^~~~~~
+interact.cpp: In function ‘void compute_density(sim_state_t*, sim_param_t*)’:
+interact.cpp:74:9: error: not enough for loops to collapse
+   74 |         particle_t* pi = &p[i];
+      |         ^~~~~~~~~~
+interact.cpp:74:29: error: ‘i’ was not declared in this scope; did you mean ‘pi’?
+   74 |         particle_t* pi = &p[i];
+      |                             ^
+      |                             pi
+interact.cpp:93:35: error: too many arguments to function ‘void update_density(particle_t*)’
+   93 |                     update_density(pi, pj, h2, C);
+      |                     ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+interact.cpp:35:6: note: declared here
+   35 | void update_density(particle_t* restrict pi, particle_t* restrict pj, float h2, float C)
+      |      ^~~~~~~~~~~~~~
+make: *** [<builtin>: interact.o] Error 1
+Failed to collect 'cycles:u' for the './sph.x' workload: No such file or directory
+srun: error: nid005866: task 0: Exited with exit code 255
+srun: Terminating StepId=32010132.0
+WARNING: The perf.data file's data size field is 0 which is unexpected.
+Was the 'perf record' command properly terminated?
+Error:
+failed to process sample

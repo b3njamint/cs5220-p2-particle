@@ -1,0 +1,21 @@
+interact.cpp: In function ‘void update_forces(particle_t*, particle_t*, float, float, float, float, float)’:
+interact.cpp:141:35: error: invalid operator for ‘#pragma omp atomic’ before ‘;’ token
+  141 |         vec3_saxpy(pi->a,  wp, dx);
+      |                                   ^
+interact.cpp:143:35: error: invalid operator for ‘#pragma omp atomic’ before ‘;’ token
+  143 |         vec3_saxpy(pj->a, -wp, dx);
+      |                                   ^
+interact.cpp:147:35: error: invalid operator for ‘#pragma omp atomic’ before ‘;’ token
+  147 |         vec3_saxpy(pi->a,  wv, dv);
+      |                                   ^
+interact.cpp:149:35: error: invalid operator for ‘#pragma omp atomic’ before ‘;’ token
+  149 |         vec3_saxpy(pj->a, -wv, dv);
+      |                                   ^
+make: *** [<builtin>: interact.o] Error 1
+Failed to collect 'cycles:u' for the './sph.x' workload: No such file or directory
+srun: error: nid004400: task 0: Exited with exit code 255
+srun: Terminating StepId=32039645.0
+WARNING: The perf.data file's data size field is 0 which is unexpected.
+Was the 'perf record' command properly terminated?
+Error:
+failed to process sample
