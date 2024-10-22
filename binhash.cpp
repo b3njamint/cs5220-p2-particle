@@ -1,4 +1,5 @@
 #include <string.h>
+#include <omp.h>
 
 #include "zmorton.hpp"
 #include "binhash.hpp"
@@ -19,6 +20,7 @@
  *@c*/
 
 #define HASH_MASK (HASH_DIM-1)
+#define USE_PARALLEL
 
 unsigned particle_bucket(particle_t* p, float h)
 {
@@ -38,6 +40,9 @@ unsigned particle_neighborhood(unsigned* buckets, particle_t* p, float h)
     int count = 0;
 
     // iterate through all neighbors
+    #ifdef USE_PARALLEL
+    #pragma omp parallel for
+    #endif
     for (int dx = -1; dx <= 1; dx++) {
         for (int dy = -1; dy <= 1; dy++) {
             for (int dz = -1; dz <= 1; dz++) {
@@ -62,17 +67,43 @@ unsigned particle_neighborhood(unsigned* buckets, particle_t* p, float h)
 void hash_particles(sim_state_t* s, float h)
 {
     /* BEGIN TASK */
+    particle_t** hash = s->hash;
+
+    #ifdef USE_PARALLEL
+    omp_lock_t hash_locks[HASH_SIZE];
+    for (int i = 0; i < HASH_SIZE; ++i) {
+        omp_init_lock(&hash_locks[i]);
+    }
+    #endif
 
     // each bucket contains a linked list of particles
-    memset(s->hash, 0, sizeof(particle_t*) * HASH_SIZE);
+    memset(hash, 0, sizeof(particle_t*) * HASH_SIZE);
 
     // for each particle, calculate bucket and add to it
+    #ifdef USE_PARALLEL
+    #pragma omp parallel for
+    #endif
     for (int i = 0; i < s->n; i++) {
-        unsigned bucket = particle_bucket(&s->part[i], h);
-        
-        s->part[i].next = s->hash[bucket];
-        s->hash[bucket] = &s->part[i];
+        particle_t* pi = &s->part[i];
+        unsigned bucket = particle_bucket(pi, h);
+
+        #ifdef USE_PARALLEL
+        omp_set_lock(&hash_locks[bucket]);
+        #endif
+        {
+            pi->next = hash[bucket];
+            hash[bucket] = pi;
+        }
+        #ifdef USE_PARALLEL
+        omp_unset_lock(&hash_locks[bucket]);
+        #endif
     }
+
+    #ifdef USE_PARALLEL
+    for (int i = 0; i < HASH_SIZE; ++i) {
+        omp_destroy_lock(&hash_locks[i]);
+    }
+    #endif
 
     /* END TASK */
 }
