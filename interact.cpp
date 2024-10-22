@@ -82,6 +82,9 @@ void compute_density(sim_state_t* s, sim_param_t* params)
         pi->rho += ( 315.0/64.0/M_PI ) * s->mass / h3;
         
         // neighbor contribution
+        #ifdef USE_PARALLEL
+        #pragma omp parallel for
+        #endif
         #ifdef USE_BUCKETING
         for (unsigned b = 0; b < nbuckets; ++b) {
             particle_t* pj = hash[buckets[b]];
@@ -137,12 +140,38 @@ void update_forces(particle_t* pi, particle_t* pj, float h2,
         vec3_diff(dv, pi->v, pj->v);
 
         // Equal and opposite pressure forces
-        vec3_saxpy(pi->a,  wp, dx);
-        vec3_saxpy(pj->a, -wp, dx);
+        // vec3_saxpy(pi->a,  wp, dx);
+        // vec3_saxpy(pj->a, -wp, dx);
+        #pragma omp atomic
+        pi->a[0] += wp * dx[0];
+        #pragma omp atomic
+        pi->a[1] += wp * dx[1];
+        #pragma omp atomic
+        pi->a[2] += wp * dx[2];
+
+        #pragma omp atomic
+        pj->a[0] -= wp * dx[0];
+        #pragma omp atomic
+        pj->a[1] -= wp * dx[1];
+        #pragma omp atomic
+        pj->a[2] -= wp * dx[2];
         
         // Equal and opposite viscosity forces
-        vec3_saxpy(pi->a,  wv, dv);
-        vec3_saxpy(pj->a, -wv, dv);
+        // vec3_saxpy(pi->a,  wv, dv);
+        // vec3_saxpy(pj->a, -wv, dv);
+        #pragma omp atomic
+        pi->a[0] += wv * dv[0];
+        #pragma omp atomic
+        pi->a[1] += wv * dv[1];
+        #pragma omp atomic
+        pi->a[2] += wv * dv[2];
+
+        #pragma omp atomic
+        pj->a[0] -= wv * dv[0];
+        #pragma omp atomic
+        pj->a[1] -= wv * dv[1];
+        #pragma omp atomic
+        pj->a[2] -= wv * dv[2];
     }
 }
 
@@ -190,7 +219,14 @@ void compute_accel(sim_state_t* state, sim_param_t* params)
         particle_t* pi = &p[i];
         unsigned buckets[MAX_NBR_BINS];
         unsigned nbuckets = particle_neighborhood(buckets, pi, h);
-
+        #else
+        particle_t* pi = p+i;
+        #endif
+        
+        #ifdef USE_PARALLEL
+        #pragma omp parallel for
+        #endif
+        #ifdef USE_BUCKETING
         for (unsigned b = 0; b < nbuckets; ++b) {
             particle_t* pj = hash[buckets[b]];
             while (pj) {
@@ -200,15 +236,12 @@ void compute_accel(sim_state_t* state, sim_param_t* params)
                 pj = pj->next;
             }
         }
-
         #else
-        particle_t* pi = p+i;
         for (int j = i+1; j < n; ++j) {
             particle_t* pj = p+j;
             update_forces(pi, pj, h2, rho0, C0, Cp, Cv);
         }
         #endif
-    
     }
     /* END TASK */
 }
