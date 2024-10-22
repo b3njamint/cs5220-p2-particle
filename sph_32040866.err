@@ -1,3 +1,0 @@
-[ perf record: Woken up 32 times to write data ]
-failed to mmap file
-[ perf record: Captured and wrote 13.091 MB perf.data ]
