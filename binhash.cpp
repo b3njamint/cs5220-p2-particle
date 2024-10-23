@@ -22,9 +22,6 @@
 #define HASH_MASK (HASH_DIM-1)
 #define USE_PARALLEL
 
-#ifdef USE_PARALLEL
-std::vector<omp_lock_t> bin_locks = create_locks(HASH_SIZE);
-#endif
 
 unsigned particle_bucket(particle_t* p, float h)
 {
@@ -84,16 +81,8 @@ void hash_particles(sim_state_t* s, float h)
         particle_t* pi = &s->part[i];
         unsigned bucket = particle_bucket(pi, h);
 
-        #ifdef USE_PARALLEL
-        omp_set_lock(&bin_locks[bucket]);
-        #endif
-        {
-            pi->next = hash[bucket];
-            hash[bucket] = pi;
-        }
-        #ifdef USE_PARALLEL
-        omp_unset_lock(&bin_locks[bucket]);
-        #endif
+        pi->next = hash[bucket];
+        hash[bucket] = pi;
     }
 
     // #ifdef USE_PARALLEL
@@ -104,11 +93,3 @@ void hash_particles(sim_state_t* s, float h)
 
     /* END TASK */
 }
-
-std::vector<omp_lock_t> create_locks(int n) {
-    std::vector<omp_lock_t> locks = std::vector<omp_lock_t>(n);
-    for (int i = 0; i < n; i++) {
-        omp_init_lock(&locks[i]);
-    }
-    return locks;
-}   
