@@ -41,9 +41,9 @@ unsigned particle_neighborhood(unsigned* buckets, particle_t* p, float h)
     int count = 0;
 
     // iterate through all neighbors
-    #ifdef USE_PARALLEL
-    #pragma omp parallel for
-    #endif
+    // #ifdef USE_PARALLEL
+    // #pragma omp parallel for
+    // #endif
     for (int dx = -1; dx <= 1; dx++) {
         for (int dy = -1; dy <= 1; dy++) {
             for (int dz = -1; dz <= 1; dz++) {
@@ -68,6 +68,14 @@ unsigned particle_neighborhood(unsigned* buckets, particle_t* p, float h)
 void hash_particles(sim_state_t* s, float h)
 {
     /* BEGIN TASK */
+    #ifdef USE_PARALLEL
+    omp_lock_t hash_locks[HASH_SIZE];
+    
+    for (int i = 0; i < HASH_SIZE; ++i) {
+        omp_init_lock(&hash_locks[i]);
+    }
+    #endif
+
     particle_t** hash = s->hash;
 
     // each bucket contains a linked list of particles
@@ -81,15 +89,19 @@ void hash_particles(sim_state_t* s, float h)
         particle_t* pi = &s->part[i];
         unsigned bucket = particle_bucket(pi, h);
 
+        omp_set_lock(&hash_locks[bucket]);
+
         pi->next = hash[bucket];
         hash[bucket] = pi;
+
+        omp_unset_lock(&hash_locks[bucket]);
     }
 
-    // #ifdef USE_PARALLEL
-    // for (int i = 0; i < HASH_SIZE; ++i) {
-    //     omp_destroy_lock(&hash_locks[i]);
-    // }
-    // #endif
+    #ifdef USE_PARALLEL
+    for (int i = 0; i < HASH_SIZE; ++i) {
+        omp_destroy_lock(&hash_locks[i]);
+    }
+    #endif
 
     /* END TASK */
 }

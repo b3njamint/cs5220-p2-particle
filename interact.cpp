@@ -82,9 +82,9 @@ void compute_density(sim_state_t* s, sim_param_t* params)
         pi->rho += ( 315.0/64.0/M_PI ) * s->mass / h3;
         
         // neighbor contribution
-        #ifdef USE_PARALLEL
-        #pragma omp parallel for
-        #endif
+        // #ifdef USE_PARALLEL
+        // #pragma omp parallel for
+        // #endif
         #ifdef USE_BUCKETING
         for (unsigned b = 0; b < nbuckets; ++b) {
             particle_t* pj = hash[buckets[b]];
@@ -223,9 +223,9 @@ void compute_accel(sim_state_t* state, sim_param_t* params)
         particle_t* pi = p+i;
         #endif
         
-        #ifdef USE_PARALLEL
-        #pragma omp parallel for
-        #endif
+        // #ifdef USE_PARALLEL
+        // #pragma omp parallel for
+        // #endif
         #ifdef USE_BUCKETING
         for (unsigned b = 0; b < nbuckets; ++b) {
             particle_t* pj = hash[buckets[b]];
