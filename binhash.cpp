@@ -89,12 +89,16 @@ void hash_particles(sim_state_t* s, float h)
         particle_t* pi = &s->part[i];
         unsigned bucket = particle_bucket(pi, h);
 
+        #ifdef USE_PARALLEL
         omp_set_lock(&hash_locks[bucket]);
+        #endif
 
         pi->next = hash[bucket];
         hash[bucket] = pi;
 
+        #ifdef USE_PARALLEL
         omp_unset_lock(&hash_locks[bucket]);
+        #endif
     }
 
     #ifdef USE_PARALLEL
