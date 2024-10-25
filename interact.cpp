@@ -39,12 +39,12 @@ void update_density(particle_t* pi, particle_t* pj, float h2, float C)
     if (z > 0) {
         float rho_ij = C*z*z*z;
 
-        #define USE_PARALLEL
+        #ifdef USE_PARALLEL
         #pragma omp atomic
         #endif
         pi->rho += rho_ij;
 
-        #define USE_PARALLEL
+        #ifdef USE_PARALLEL
         #pragma omp atomic
         #endif
         pj->rho += rho_ij;
@@ -148,28 +148,28 @@ void update_forces(particle_t* pi, particle_t* pj, float h2,
         // Equal and opposite pressure forces
         // vec3_saxpy(pi->a,  wp, dx);
         // vec3_saxpy(pj->a, -wp, dx);
-        #define USE_PARALLEL
+        #ifdef USE_PARALLEL
         #pragma omp atomic
         #endif
         pi->a[0] += wp * dx[0];
-        #define USE_PARALLEL
+        #ifdef USE_PARALLEL
         #pragma omp atomic
         #endif
         pi->a[1] += wp * dx[1];
-        #define USE_PARALLEL
+        #ifdef USE_PARALLEL
         #pragma omp atomic
         #endif
         pi->a[2] += wp * dx[2];
 
-        #define USE_PARALLEL
+        #ifdef USE_PARALLEL
         #pragma omp atomic
         #endif
         pj->a[0] -= wp * dx[0];
-        #define USE_PARALLEL
+        #ifdef USE_PARALLEL
         #pragma omp atomic
         #endif
         pj->a[1] -= wp * dx[1];
-        #define USE_PARALLEL
+        #ifdef USE_PARALLEL
         #pragma omp atomic
         #endif
         pj->a[2] -= wp * dx[2];
@@ -177,28 +177,28 @@ void update_forces(particle_t* pi, particle_t* pj, float h2,
         // Equal and opposite viscosity forces
         // vec3_saxpy(pi->a,  wv, dv);
         // vec3_saxpy(pj->a, -wv, dv);
-        #define USE_PARALLEL
+        #ifdef USE_PARALLEL
         #pragma omp atomic
         #endif
         pi->a[0] += wv * dv[0];
-        #define USE_PARALLEL
+        #ifdef USE_PARALLEL
         #pragma omp atomic
         #endif
         pi->a[1] += wv * dv[1];
-        #define USE_PARALLEL
+        #ifdef USE_PARALLEL
         #pragma omp atomic
         #endif
         pi->a[2] += wv * dv[2];
 
-        #define USE_PARALLEL
+        #ifdef USE_PARALLEL
         #pragma omp atomic
         #endif
         pj->a[0] -= wv * dv[0];
-        #define USE_PARALLEL
+        #ifdef USE_PARALLEL
         #pragma omp atomic
         #endif
         pj->a[1] -= wv * dv[1];
-        #define USE_PARALLEL
+        #ifdef USE_PARALLEL
         #pragma omp atomic
         #endif
         pj->a[2] -= wv * dv[2];
